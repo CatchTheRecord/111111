@@ -18,6 +18,7 @@ import {Snackbar, Paper, LinearProgress, Chip} from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import {AlertState, getAtaForMint, toDate} from './utils';
 import {MintButton} from './MintButton';
+import { CrossmintPayButton } from "@crossmint/client-sdk-react-ui";
 import {
     awaitTransactionSignatureConfirmation,
     CANDY_MACHINE_PROGRAM,
@@ -84,7 +85,7 @@ const NFT = styled(Paper)`
   margin: 0 auto;
   padding: 5px 20px 20px 20px;
   flex: 1 1 auto;
-  background-color: var(--card-background-color) !important;
+  background-color: var(--card-background-color: #000000) !important;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
 `;
 
@@ -650,11 +651,11 @@ const Home = (props: HomeProps) => {
                 <MintContainer>
                     <DesContainer>
                         <NFT elevation={3}>
-                            <h2>My NFT</h2>
+                            <h2>The Art of Field Recording</h2>
                             <br/>
                             <div><Price
                                 label={isActive && whitelistEnabled && (whitelistTokenBalance > 0) ? (whitelistPrice + " " + priceLabel) : (price + " " + priceLabel)}/><Image
-                                src="cool-cats.gif"
+                                src="Cover.png"
                                 alt="NFT To Mint"/></div>
                             <br/>
                             {wallet && isActive && whitelistEnabled && (whitelistTokenBalance > 0) && isBurnToken &&
@@ -710,6 +711,13 @@ const Home = (props: HomeProps) => {
                                                 cluster={cluster}
                                                 options={{autoShowModal: false}}
                                             >
+                                                  <CrossmintPayButton
+    collectionTitle="<The Art of Field Recording>"
+    collectionDescription="The 1st pro-audio community collection of arts about field recording was designed in collab with neural network close to the style of one Swiss-born German artist. There are 505 unique works depicting all possible variations on field recording in a vibrant way of abstract expressionism. There are the recordings of the sea and forests, busy streets and public transport, the rain and a bonfire, the buzzing of a fly, whistling winds, meadows, the bells and human voices (indoor and outdoor public tones), classical concerts, winter chill vibes and others."
+    collectionPhoto="https://gateway.pinata.cloud/ipfs/QmPNwn4wSfdLowy15rdFJyf1t6CbS2URds327LSYxuprPA"
+    clientId="396e4c63-20bd-477c-b041-c5bd6d4b198d"
+    mintConfig={{"type":"candy-machine"}}
+/>
                                                 <MintButton
                                                     candyMachine={candyMachine}
                                                     isMinting={isMinting}
